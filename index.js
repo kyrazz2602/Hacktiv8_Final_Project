@@ -15,6 +15,7 @@ const app = express();
 // tambahkan middleware-nya ke dalam app
 app.use(cors()); // CORS: Cross-Origin Resource Sharing
 app.use(express.json()); // membolehkan request dengan Content-Type: application/json
+app.use(express.static('public'));
 
 // The client gets the API key from the environment variable `GEMINI_API_KEY`.
 const ai = new GoogleGenAI({}); // instantiate sebuah class menjadi sebuah instance object di variable `ai`
@@ -30,20 +31,43 @@ app.post('/chat', async (req, res) => {
     return res.status(400).send("Tidak ada request body nih!");
   }
 
-  const { prompt } = req.body;
+  const { messages } = req.body;
+  // messages: { role: 'user' | 'model', content: string }[]
 
   // kasih satpam lagi buat periksa isi prompt-nya
-  if (!prompt) {
-    return res.status(400).send("Tidak ada prompt nih!");
+  if (!messages || !Array.isArray(messages)) {
+    return res.status(400).send(
+      "Tidak ada pesan nih, atau pesannya nggak beraturan! Pesan harus berupa array berisi role dan juga content"
+    );
   }
+
+  // Array mapping
+  // looping untuk mengubah (mapping) dari satu object/tipe ke tipe/object lain
+  const contents = messages.map(message => {
+    return {
+      role: message.role,
+      parts: [
+        { text: message.content }
+      ]
+    }
+  })
 
   try {
     const aiResponse = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
-      contents: prompt
+      config: {
+        systemInstruction: {
+          parts: [
+            { text: "Anda adalah seorang seniman yang gemar membuat puisi sebagai jawaban." }
+          ]
+        }
+      },
+      model: "gemini-2.5-flash-lite",
+      contents // shorthand dari "contents: contents"
     })
 
-    return res.status(200).send(aiResponse.text);
+    return res.status(200).json({
+      response: aiResponse.text
+    });
   } catch (e) {
     return res.status(500).send(e.message);
   }
