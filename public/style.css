@@ -293,6 +293,196 @@ body {
   font-style: italic;
 }
 
+/* Structured Content Styles */
+
+/* Code Blocks */
+.code-block {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  margin: 1rem 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.code-language {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.copy-code {
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-code:hover {
+  background: var(--accent-secondary);
+  transform: translateY(-1px);
+}
+
+.code-content {
+  margin: 0;
+  padding: 1rem;
+  background: var(--bg-primary);
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.code-content code {
+  background: none;
+  padding: 0;
+  border: none;
+  font-family: inherit;
+}
+
+/* Inline Code */
+.inline-code {
+  background: var(--bg-secondary);
+  color: var(--accent-primary);
+  padding: 0.125rem 0.375rem;
+  border-radius: var(--radius-sm);
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 0.875em;
+  border: 1px solid var(--border-color);
+}
+
+/* Lists */
+.numbered-list,
+.bullet-list {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.numbered-list li,
+.bullet-list li {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.numbered-item {
+  list-style-type: decimal;
+}
+
+.bullet-item {
+  list-style-type: disc;
+}
+
+/* Headers */
+.message-header {
+  margin: 1.5rem 0 1rem 0;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--accent-primary);
+  padding-bottom: 0.5rem;
+}
+
+.message-header:first-child {
+  margin-top: 0;
+}
+
+h1.message-header {
+  font-size: 1.5rem;
+}
+
+h2.message-header {
+  font-size: 1.25rem;
+}
+
+h3.message-header {
+  font-size: 1.125rem;
+}
+
+/* Links */
+.message-link {
+  color: var(--accent-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.message-link:hover {
+  border-bottom-color: var(--accent-primary);
+  color: var(--accent-secondary);
+}
+
+/* Emphasis */
+.message strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.message em {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* Tables */
+.table-container {
+  margin: 1rem 0;
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.message-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-primary);
+}
+
+.message-table th,
+.message-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.message-table th {
+  background: var(--bg-secondary);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.message-table tr:hover {
+  background: var(--bg-tertiary);
+}
+
+.message-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Quotes */
+.message-quote {
+  margin: 1rem 0;
+  padding: 1rem 1.5rem;
+  background: var(--bg-secondary);
+  border-left: 4px solid var(--accent-primary);
+  border-radius: var(--radius-md);
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
 /* Input Section */
 .input-section {
   background: var(--bg-primary);
@@ -553,6 +743,16 @@ body {
   .input-section {
     padding: 1rem;
   }
+  
+  /* Mobile table adjustments */
+  .table-container {
+    font-size: 0.875rem;
+  }
+  
+  .message-table th,
+  .message-table td {
+    padding: 0.5rem 0.75rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -571,6 +771,16 @@ body {
   .message {
     max-width: 95%;
     padding: 0.75rem 1rem;
+  }
+  
+  /* Mobile code block adjustments */
+  .code-content {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+  
+  .code-header {
+    padding: 0.5rem 0.75rem;
   }
 }
 
