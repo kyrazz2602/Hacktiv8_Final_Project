@@ -1,0 +1,23 @@
+# Node.js Dependencies untuk AI Chat Application
+# Install dengan: npm install
+
+# Google AI SDK untuk integrasi dengan Gemini AI
+@google/generative-ai==0.24.1
+
+# Web framework untuk Node.js
+express==5.1.0
+
+# Middleware untuk Cross-Origin Resource Sharing
+cors==2.8.5
+
+# Load environment variables dari file .env
+dotenv==17.2.1
+
+# Middleware untuk handling multipart/form-data
+multer==2.0.2
+
+# Catatan:
+# - Pastikan Node.js versi 16 atau lebih baru terinstall
+# - Buat file .env dengan GEMINI_API_KEY dan PORT
+# - Jalankan dengan: npm install (untuk install dependencies)
+# - Start server dengan: node index.js atau npm start
